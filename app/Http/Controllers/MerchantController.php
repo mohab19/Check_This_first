@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Merchant;
+use App\Domain\Merchant\Services\MerchantService;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class MerchantController extends Controller
 {
+    private $merchant_service;
+
+    public function __construct(
+        MerchantService $merchant_service
+    )
+    {
+        $this->merchant_service = $merchant_service;
+    }
+
     /**
      * Display a listing of the resource.
      *

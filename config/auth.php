@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard'     => 'web',
         'passwords' => 'users',
     ],
 
@@ -36,9 +36,32 @@ return [
     */
 
     'guards' => [
+        // web-sessions guards
         'web' => [
-            'driver' => 'session',
+            'driver'   => 'session',
             'provider' => 'users',
+        ],
+        'merchant' => [
+            'driver'   => 'session',
+            'provider' => 'merchants',
+        ],
+        'customer' => [
+            'driver'   => 'session',
+            'provider' => 'customers',
+        ],
+
+        // api guards
+        'api' => [
+            'driver'   => 'passport',
+            'provider' => 'users',
+        ],
+        'merchant-api' => [
+            'driver'   => 'passport',
+            'provider' => 'merchants',
+        ],
+        'customer-api' => [
+            'driver'   => 'passport',
+            'provider' => 'customers',
         ],
     ],
 
@@ -63,6 +86,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'merchants' => [
+            'driver' => 'eloquent',
+            'model' => App\Domain\Merchant\Entities\Merchant::class,
+        ],
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Domain\Customer\Entities\Customer::class,
         ],
 
         // 'users' => [
@@ -89,10 +120,25 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
+            'table'    => 'password_resets',
+            'expire'   => 60,
             'throttle' => 60,
         ],
+
+        'merchants' => [
+            'provider' => 'merchants',
+            'table'    => 'password_resets',
+            'expire'   => 60,
+            'throttle' => 60,
+        ],
+
+        'customers' => [
+            'provider' => 'customers',
+            'table'    => 'password_resets',
+            'expire'   => 60,
+            'throttle' => 60,
+        ],
+
     ],
 
     /*
