@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
+use App\Domain\Store\Entities\Store;
 use Laravel\Passport\HasApiTokens;
 
 class Merchant extends Authenticatable
@@ -42,5 +43,13 @@ class Merchant extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the stores for the blog merchant.
+     */
+    public function stores()
+    {
+        return $this->hasMany(Store::class);
+    }
 
 }

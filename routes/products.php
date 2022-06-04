@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Auth\MerchantAuthController;
-use App\Http\Controllers\MerchantController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +16,8 @@ use App\Http\Controllers\MerchantController;
 |
 */
 
-Route::group(['middleware' => 'cors', 'json.response'], function () {
-    Route::post('register', [MerchantAuthController::class, 'register']);
-    Route::post('login', [MerchantAuthController::class, 'login']);
-
-    Route::group(['middleware' => 'auth:merchant-api'], function () {
-        Route::get('/dashboard', [MerchantController::class, 'index']);
-    });
+Route::group(['middleware' => 'auth:merchant-api', 'cors', 'json.response'], function () {
+    Route::get('/get_products', [ProductController::class, 'index']);
+    Route::get('/get_store_products/{store_id}', [ProductController::class, 'show']);
+    Route::post('/register_product', [ProductController::class, 'store']);
 });
