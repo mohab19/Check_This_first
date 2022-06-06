@@ -12,6 +12,8 @@ class Customer extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $guard = 'customer-api';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,7 +22,7 @@ class Customer extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'Address',
+        'address',
         'password',
     ];
 
