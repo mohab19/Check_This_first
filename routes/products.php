@@ -17,7 +17,7 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::group(['middleware' => 'auth:merchant-api', 'cors', 'json.response'], function () {
-    Route::get('/get_products', [ProductController::class, 'index']);
-    Route::get('/get_store_products/{store_id}', [ProductController::class, 'show']);
+    Route::get('/get_store_products/{store_id}', [ProductController::class, 'index']);
+    Route::get('/get_product/{product_id}', [ProductController::class, 'show']);
     Route::post('/register_product', [ProductController::class, 'store']);
 });

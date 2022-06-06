@@ -24,10 +24,12 @@ class StoreRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'merchant_id' => 'required|exists:merchants,id',
-            'name'        => 'required|string|max:255',
-            'type'        => 'required|string|max:255',
-            'country_id'  => 'required|exists:countries,id'
+            'merchant_id'    => 'required|exists:merchants,id',
+            'name'           => 'required|string|max:255',
+            'type'           => 'required|string|max:255',
+            'country_id'     => 'required|exists:countries,id',
+            'vat_included'   => 'nullable|boolean',
+            'vat_percentage' => 'required_with:vat_included|numeric|min:1|max:100',
         ];
     }
 }

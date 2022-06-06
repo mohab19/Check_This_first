@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Product\Entities;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,5 +30,13 @@ class Product extends Model
     public function Store()
     {
         return $this->belongsTo(Store::class);
+    }
+
+    /**
+     * Get the product translated names and descriptions.
+     */
+    public function Translations()
+    {
+        return $this->hasMany(TranslatedProduct::class);
     }
 }

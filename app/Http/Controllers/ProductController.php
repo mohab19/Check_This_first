@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\Product\Requests\ProductRegisterRequest;
 use App\Domain\Product\Services\ProductService;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Domain\Product\Requests\ProductRegisterRequest;
 
 class ProductController extends Controller
 {
@@ -21,9 +21,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $products = $this->product_service->getAllProducts();
+        $products = $this->product_service->getAllProducts($id);
 
         if($products)
             return customeResponse($products, 'Operation Successful');
@@ -49,7 +49,7 @@ class ProductController extends Controller
      */
     public function store(ProductRegisterRequest $request)
     {
-        $product = $this->product_service->createProduct($request->toArray);
+        $product = $this->product_service->createProduct($request->toArray());
 
         if($product)
             return customeResponse($product, 'Operation Successful');
@@ -63,9 +63,14 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $product = $this->product_service->getProduct($id);
+
+        if($product)
+            return customeResponse($product, 'Operation Successful');
+        else
+            return customeResponse('', 'Operation Failed', 500);
     }
 
     /**
