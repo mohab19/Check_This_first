@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('name', 255);
             $table->string('description');
             $table->float('price', 8, 2);
-            $table->boolean('vat_included')->default(true);
-            $table->integer('vat_percentage')->nullable();
 
             $table->foreign('store_id')->references('id')->on('stores');
             $table->timestamps();

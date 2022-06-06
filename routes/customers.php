@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\Auth\CustomerAuthController;
 use App\Http\Controllers\CustomerController;
 
 /*
@@ -17,8 +18,8 @@ use App\Http\Controllers\CustomerController;
 */
 
 Route::group(['middleware' => 'cors', 'json.response'], function () {
-    Route::post('register', [CustomerController::class, 'register']);
-    Route::post('login', [CustomerController::class, 'login']);
+    Route::post('register', [CustomerAuthController::class, 'register']);
+    Route::post('login', [CustomerAuthController::class, 'login']);
 
     Route::group(['middleware' => 'auth:customer-api'], function () {
         Route::get('/dashboard', function() {

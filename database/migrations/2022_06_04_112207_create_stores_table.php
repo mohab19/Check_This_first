@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('type', 255);
             $table->unsignedBigInteger('country_id');
 
+            $table->boolean('vat_included')->default(true);
+            $table->integer('vat_percentage')->default(0);
+
             $table->foreign('merchant_id')->references('id')->on('merchants');
             $table->foreign('country_id')->references('id')->on('countries');
             $table->timestamps();

@@ -2,19 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\Cart\Requests\CreateCartRequest;
-use App\Domain\Cart\Services\CartService;
+use App\Models\CartProducts;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class CartProductsController extends Controller
 {
-    private $cart_service;
-
-    public function __construct(CartService $cart_service)
-    {
-        $this->cart_service = $cart_service;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,12 +14,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = $this->cart_service->getCart();
-
-        if($cart)
-            return customeResponse($cart, 'Operation Successful');
-        else
-            return customeResponse('', 'Operation Failed', 500);
+        //
     }
 
     /**
@@ -46,23 +33,18 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateCartRequest $request)
+    public function store(Request $request)
     {
-        $cart = $this->cart_service->addProductToCart($request->toArray());
-
-        if($cart)
-            return customeResponse($cart, 'Operation Successful');
-        else
-            return customeResponse('', 'Operation Failed', 500);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cart  $cart
+     * @param  \App\Models\CartProducts  $cartProducts
      * @return \Illuminate\Http\Response
      */
-    public function show(Cart $cart)
+    public function show(CartProducts $cartProducts)
     {
         //
     }
@@ -70,10 +52,10 @@ class CartController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cart  $cart
+     * @param  \App\Models\CartProducts  $cartProducts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cart $cart)
+    public function edit(CartProducts $cartProducts)
     {
         //
     }
@@ -82,10 +64,10 @@ class CartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cart  $cart
+     * @param  \App\Models\CartProducts  $cartProducts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
+    public function update(Request $request, CartProducts $cartProducts)
     {
         //
     }
@@ -93,10 +75,10 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cart  $cart
+     * @param  \App\Models\CartProducts  $cartProducts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy(CartProducts $cartProducts)
     {
         //
     }

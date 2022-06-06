@@ -38,7 +38,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/Merchants.php'));
 
             Route::middleware('api')
-                ->prefix('api/customer')
+                ->prefix('api/customers')
                 ->group(base_path('routes/customers.php'));
 
             Route::middleware('api')
@@ -48,6 +48,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('api')
                 ->prefix('api/products')
                 ->group(base_path('routes/products.php'));
+
+            Route::middleware('api')
+                ->prefix('api/carts')
+                ->group(base_path('routes/carts.php'));
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
