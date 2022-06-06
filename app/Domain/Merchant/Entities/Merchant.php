@@ -13,6 +13,8 @@ class Merchant extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $guard = 'merchant-api';
+
     /**
      * The attributes that are mass assignable.
      *

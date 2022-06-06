@@ -22,6 +22,11 @@ class ProductService
         $this->translated_product_service = $translated_product_service;
     }
 
+    public function findOne($id)
+    {
+        return $this->product_repository->findOne($id);
+    }
+
     public function getAllProducts()
     {
         $products = $this->product_repository->getAll();
