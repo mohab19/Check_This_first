@@ -33,14 +33,12 @@ class ProductRepository extends BaseRepository
             'store_id'       => $request['store_id'],
             'name'           => $request['name'],
             'description'    => $request['description'],
-            'price'          => $request['price'],
-            'vat_included'   => $request['vat_included'],
-            'vat_percentage' => $request['vat_percentage']
+            'price'          => $request['price']
         ]);
     }
 
-    public function findOneByEmail($email)
+    public function findOne($id)
     {
-        return $this->model->where('email', $email)->first();
+        return $this->model->find($id);
     }
 }

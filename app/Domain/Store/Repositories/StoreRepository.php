@@ -29,7 +29,9 @@ class StoreRepository extends BaseRepository
             'merchant_id'    => $request['merchant_id'],
             'name'           => $request['name'],
             'type'           => $request['type' ],
-            'country_id'     => $request['country_id']
+            'country_id'     => $request['country_id'],
+            'vat_included'   => $request['vat_included'],
+            'vat_percentage' => $request['vat_percentage']
         ]);
     }
 
