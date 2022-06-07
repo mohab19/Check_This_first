@@ -12,9 +12,7 @@ class CustomerAuthController extends Controller
 {
     private $customer_service;
 
-    public function __construct(
-        CustomerAuthService $customer_service
-    )
+    public function __construct(CustomerAuthService $customer_service)
     {
         $this->customer_service = $customer_service;
     }

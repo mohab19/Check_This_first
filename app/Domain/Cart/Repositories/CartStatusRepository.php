@@ -23,8 +23,18 @@ class CartStatusRepository extends BaseRepository
     public function createStatus($id)
     {
         $status = $this->model->create([
-            'cart_id'   => $cart->id,
+            'cart_id'   => $id,
             'status_id' => Status::where('name', 'Created')->first()->id
+        ]);
+
+        return $status;
+    }
+
+    public function UpdateStatus($id, $status)
+    {
+        $status = $this->model->create([
+            'cart_id'   => $id,
+            'status_id' => Status::where('name', $status)->first()->id
         ]);
 
         return $status;

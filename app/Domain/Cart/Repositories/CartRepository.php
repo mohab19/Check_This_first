@@ -57,4 +57,9 @@ class CartRepository extends BaseRepository
 
         return $cart;
     }
+
+    public function getCart($id)
+    {
+        return $this->model->find($id);
+    }
 }

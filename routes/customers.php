@@ -23,7 +23,8 @@ Route::group(['middleware' => 'cors', 'json.response'], function () {
 
     Route::group(['middleware' => 'auth:customer-api'], function () {
         Route::get('/dashboard', function() {
-            dd(auth()->user()->name);
+            dd(auth()->user('customer-api')->name);
         });
+        Route::get('place_order/{cart_id}', [CustomerController::class, 'placeOrder']);
     });
 });

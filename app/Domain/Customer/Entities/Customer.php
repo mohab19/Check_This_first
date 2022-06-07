@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\Domain\Cart\Entities\Cart;
 
 class Customer extends Authenticatable
 {
@@ -44,5 +45,13 @@ class Customer extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The Carts that is owned by the Customer.
+     */
+    public function Carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 
 }
