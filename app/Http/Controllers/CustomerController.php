@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Domain\Customer\Services\CustomerService;
 use Illuminate\Http\Request;
+use App\Models\Customer;
 
 class CustomerController extends Controller
 {
+    private $customer_service;
+
+    public function __construct(CustomerService $customer_service)
+    {
+        $this->customer_service = $customer_service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -81,5 +89,21 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         //
+    }
+
+    /**
+     * update customer's cart status.
+     *
+     * @param  int  $id
+     * @return json $response
+     */
+    public function placeOrder($id)
+    {
+        $cart = $this->customer_service->placeOrder($id);
+        
+        if($cart)
+            return customeResponse($cart, 'Operation Successful');
+        else
+            return customeResponse('', 'Operation Failed', 500);
     }
 }

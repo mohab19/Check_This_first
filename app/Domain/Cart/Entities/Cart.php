@@ -3,6 +3,7 @@
 namespace App\Domain\Cart\Entities;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Domain\Customer\Entities\Customer;
 use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
@@ -34,6 +35,14 @@ class Cart extends Model
      */
     public function Products()
     {
-        return $this->hasMany(CartProduct::class);
+        return $this->hasMany(CartProducts::class);
+    }
+
+    /**
+     * The Customer that is owns the cart.
+     */
+    public function Customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }
